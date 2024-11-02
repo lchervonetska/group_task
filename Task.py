@@ -34,6 +34,15 @@ def add_matrices(matrix1, matrix2):
         result.append(a)
     return result
 
+def difference_matrices(matrix1, matrix2):
+    result = []
+    for i in range(len(matrix1)):
+        a = []
+        for j in range(len(matrix1[0])):
+            a.append(matrix1[i][j] - matrix2[i][j])
+        result.append(a)
+    return result
+
 def print_result_matrix(matrix):
     for i in matrix:
         for j in i:
@@ -60,6 +69,21 @@ def if_product():
     print_result_matrix(result_matrix)
 
 
+def if_difference():
+    if row1 == row2 and column1 == column2:
+        matrix1 = build_matrix(column1, row1)
+        matrix2 = build_matrix(column2, row2)
+        print("Your 1 matrix is: ")
+        print_matrix(matrix1)
+        print("Your 2 matrix is: ")
+        print_matrix(matrix2)
+
+        result_matrix = difference_matrices(matrix1, matrix2)
+        print("The sum of the matrices is: ")
+        print_matrix(result_matrix)
+    else:
+        print("Matrices cannot be added. Try again.")
+
 
 def if_add():
     if row1 == row2 and column1 == column2:
@@ -80,13 +104,16 @@ def if_add():
 def ask_user():
     while True:
         decision = input("What do you want to do with your matrices "
-                         "(Multiply/Add): ").lower()
+                         "(Multiply/Add/Difference): ").lower()
 
         if decision == "multiply":
             if_product()
             break
         elif decision == "add":
             if_add()
+            break
+        elif decision == "difference":
+            if_difference()
             break
         else:
             print("Invalid option. Please try again")
